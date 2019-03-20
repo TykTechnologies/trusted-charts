@@ -1,0 +1,5 @@
+name: go-httpbin
+version: 0.1.0
+appVersion: 6bcdbda6
+description: HTTP Request & Response Service
+
