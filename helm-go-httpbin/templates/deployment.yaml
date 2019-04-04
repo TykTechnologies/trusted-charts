@@ -8,48 +8,24 @@ metadata:
     release: {{ .Release.Name }}
   name: {{ template "go-httpbin.fullname" . }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   template:
     metadata:
-    {{- if .Values.podAnnotations }}
-      annotations:
-{{ toYaml .Values.podAnnotations | indent 8 }}
-    {{- end }}
       labels:
         app: {{ template "go-httpbin.name" . }}
         release: "{{ .Release.Name }}"
     spec:
       containers:
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        image: "skyscanner/go-httpbin:6bcdbda6"
+        imagePullPolicy: IfNotPresent
         env:
         {{- range $key, $value := .Values.env }}
         - name: "{{ $key }}"
           value: "{{ $value }}"
         {{- end }}
         ports:
-        - containerPort: {{ .Values.service.internalPort }}
+        - containerPort: 8080
           name: {{ template "go-httpbin.name" . }}
           protocol: TCP
-        # livenessProbe:
-        #   httpGet:
-        #     path: /ping
-        #     port: {{ .Values.service.internalPort }}
-        # readinessProbe:
-        #   httpGet:
-        #     path: /ping
-        #     port: {{ .Values.service.internalPort }}
-        resources:
-{{ toYaml .Values.resources | indent 10 }}
-    {{- if .Values.affinity }}
-      affinity:
-{{ toYaml .Values.affinity | indent 8 }}
-    {{- end }}
-    {{- if .Values.nodeSelector }}
-      nodeSelector:
-{{ toYaml .Values.nodeSelector | indent 8 }}
-    {{- end }}
-      tolerations:
-{{ toYaml .Values.tolerations | indent 8 }}
 

@@ -1,12 +1,4 @@
 ---
-image:
-  pullPolicy: IfNotPresent
-  repository: skyscanner/go-httpbin
-  tag: 6bcdbda6
 ingress:
-  enabled: false
-replicaCount: 1
-service:
-  externalPort: 8080
-  internalPort: 8080
-  type: ClusterIP
+  hosts:
+  - httpbin.my-test-system.ara.app

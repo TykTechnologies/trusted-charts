@@ -8,10 +8,10 @@ metadata:
     heritage: {{ .Release.Service }}
   name: {{ template "go-httpbin.fullname" . }}
 spec:
-  type: {{ .Values.service.type }}
+  type: ClusterIP
   ports:
-    - port: {{ .Values.service.externalPort }}
-      targetPort: {{ .Values.service.internalPort }}
+    - port: 8080
+      targetPort: 8080
       protocol: TCP
   selector:
     app: {{ template "go-httpbin.name" . }}

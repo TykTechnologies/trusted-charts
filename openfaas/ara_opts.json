@@ -1,0 +1,6 @@
+{
+  "AllowValuesYaml": false,
+  "AllowVars": true,
+  "Vars": ["$ARA_GATEWAY_HOSTNAME"],
+  "UserSuppliedValues": ""
+}

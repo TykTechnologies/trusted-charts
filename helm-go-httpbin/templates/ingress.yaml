@@ -1,6 +1,4 @@
-{{- if .Values.ingress.enabled -}}
 {{- $serviceName := include "go-httpbin.fullname" . -}}
-{{- $servicePort := .Values.service.externalPort -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -11,9 +9,7 @@ metadata:
     release: {{ .Release.Name }}
   name: {{ template "go-httpbin.fullname" . }}
   annotations:
-    {{- range $key, $value := .Values.ingress.annotations }}
-      {{ $key }}: {{ $value | quote }}
-    {{- end }}
+    kubernetes.io/ingress.class: ara
 spec:
   rules:
     {{- range $host := .Values.ingress.hosts }}
@@ -23,10 +19,9 @@ spec:
           - path: /
             backend:
               serviceName: {{ $serviceName }}
-              servicePort: {{ $servicePort }}
+              servicePort: 8080
     {{- end -}}
   {{- if .Values.ingress.tls }}
   tls:
 {{ toYaml .Values.ingress.tls | indent 4 }}
   {{- end -}}
-{{- end -}}
