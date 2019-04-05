@@ -2,7 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "openfaas.name" . }}ui--ingress
+  name: {{ template "openfaas.name" . }}-functions-ingress
   namespace: {{ .Release.Namespace | quote }}
   labels:
     app: {{ template "openfaas.name" . }}
@@ -12,13 +12,12 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: ara
     array.service.tyk.io/tags: "[\"ingress\",\"edge\"]"
-    string.service.tyk.io/proxy.listen_path: "/ui"
-    bool.service.tyk.io/proxy.strip_listen_path: "false"
+    string.service.tyk.io/proxy.listen_path: "/faas/functions/"
     string.service.tyk.io/domain: ""
 spec:
   rules:
     {{- range $host := .Values.ingress.hosts }}
-    - host: ui.foo.bar
+    - host: functions.openfaas.local
       http:
         paths:
           - path: {{ $host.path }}
