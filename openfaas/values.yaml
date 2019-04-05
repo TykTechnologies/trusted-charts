@@ -67,7 +67,7 @@ ingress:
   enabled: true
   # Used to create Ingress record (should be used with exposeServices: false).
   hosts:
-    - host: $ARA_GATEWAY_HOSTNAME
+    - host: functions.foo.bar
       serviceName: gateway
       servicePort: 8080
       path: /
