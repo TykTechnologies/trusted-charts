@@ -12,7 +12,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: ara
     array.service.tyk.io/tags: "[\"ingress\",\"edge\"]"
-    string.service.tyk.io/proxy.listen_path: "/of"
+    string.service.tyk.io/proxy.listen_path: "/functions"
+    bool.service.tyk.io/proxy.strip_listen_path: "false"
     string.service.tyk.io/domain: ""
 spec:
   rules:
