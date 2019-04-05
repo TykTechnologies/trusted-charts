@@ -2,7 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "openfaas.name" . }}-ingress
+  name: {{ template "openfaas.name" . }}ui--ingress
   namespace: {{ .Release.Namespace | quote }}
   labels:
     app: {{ template "openfaas.name" . }}
