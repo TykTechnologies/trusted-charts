@@ -10,7 +10,7 @@ metadata:
   name: {{ template "go-httpbin.fullname" . }}
   annotations:
     kubernetes.io/ingress.class: ara
-    array.service.tyk.io/tags: "['ingress','edge']"
+    array.service.tyk.io/tags: "[\"ingress\",\"edge\"]"
     string.service.tyk.io/proxy.listen_path: "/httpbin"
     string.service.tyk.io/domain: ""
 spec:
